@@ -4,7 +4,6 @@ $(document).ready(function() {
   console.log('Document is ready!! Inside composer-char-counter.js');
 
   $("#current-tweet").on('input', function(event) {
-    //console.log('INSIDE change event');
     let length = $(this).val().length;
     let characterLeft = 140 - length;
     // find the innerText of <span> by going up one node and searching down
@@ -19,9 +18,6 @@ $(document).ready(function() {
       counterElm.css("color", "red");
       counterElm.text(characterLeft);
     }
-
   });
-
-
 });
 

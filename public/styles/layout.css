@@ -25,24 +25,7 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-/*
- div.wrap {
-  width: 50%;
-  border: 1px solid black;
-  position: relative;
-  left: 100px;
-}
 
-div.container-center {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
-.container {
-  justify-content: center;
-}
-*/
 main {
   max-width: 450px;
   margin: auto;
@@ -50,3 +33,80 @@ main {
   padding-top: 140px;
   padding-bottom: 40px;
 }
+
+.tweets-container {
+  padding: 0em 2em;
+}
+
+.tweet {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid black;
+  overflow: hidden;
+}
+
+.tweet-header {
+  display: flex;
+  border-bottom: 2px solid black;
+  padding: 10px;
+  background-color: #eee;
+  align-items: center;
+}
+
+.tweet-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
+
+.tweet-name {
+  margin-left: 10px;
+}
+
+.tweet-handle {
+  margin-left: auto;
+}
+
+.tweet-body {
+  display: flex;
+  padding: 10px;
+}
+
+.tweet-footer {
+  display: flex;
+  border-top: 2px solid black;
+  padding: 10px;
+  height: 40px;
+}
+
+
+
+/*
+article.tweet {
+  margin-left: 2em;
+  margin-right: 2em;
+  border-radius: 15px;
+  border: 2px solid green;
+  overflow: hidden;
+}
+
+article.tweet header {
+  background-color: #eee;
+  border-bottom: 2px solid green;
+}
+
+article.tweet header img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+article.tweet footer {
+  border-top: 2px solid green;
+}
+
+article.tweet section {
+
+}
+*/
