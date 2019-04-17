@@ -44,6 +44,31 @@ main {
   border-radius: 10px;
   border: 2px solid black;
   overflow: hidden;
+  opacity: 0.5;
+}
+
+.tweet:hover {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid black;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.icons {
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
+article.tweet:hover .icons {
+  opacity: 1;
+}
+
+.icons .fas {
+  padding-left: 5px;
 }
 
 .tweet-header {
@@ -79,7 +104,6 @@ main {
   padding: 10px;
   height: 40px;
 }
-
 
 
 /*
