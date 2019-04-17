@@ -7,6 +7,8 @@
   padding-right: 2em;
   position: fixed;
   width: 100vw;
+  z-index: 1;
+
 }
 
 #nav-bar .logo {

@@ -36,6 +36,7 @@ main {
 
 .tweets-container {
   padding: 0em 2em;
+  z-index: 0;
 }
 
 .tweet {

@@ -65,8 +65,6 @@ $(document).ready(function() {
 
     tweets.forEach( function (userData){
       let finishedTweet = createTweetElement(userData);
-      //console.log("RETURNED TWEET IS:")
-      //console.log(finishedTweet[0])
       finishedTweet.appendTo('.tweets-container');
     });
   }
@@ -79,35 +77,37 @@ $(document).ready(function() {
     const handle = tweetData.user.handle;
     const content = tweetData.content.text;
     const created_date = tweetData.created_at;
-
+    //main article element
     var $tweet = $("<article>").addClass("tweet")
-
-    var header = $("<header>").addClass("tweet-header").appendTo($tweet)
-    var imgElm = $("<img>").addClass("tweet-img")
-                        .attr("src", avatar)
-                        .appendTo(header)
+    //article => header element
+    var header = $("<header>").addClass("tweet-header")
+    var imgElm = $("<img>").addClass("tweet-img").attr("src", avatar).appendTo(header)
     var nameElm = $("<h2>").addClass("tweet-name")
                             .text(name)
                             .appendTo(header)
     var handleElm = $("<p>").addClass("tweet-handle")
                             .text(handle)
                             .appendTo(header)
+    header.appendTo($tweet)
 
-    var sectionElm = $("<section>").addClass("tweet-body").appendTo($tweet)
+    // article => section element
+    var sectionElm = $("<section>").addClass("tweet-body")
     var commentElm = $("<p>").text(content)
                               .appendTo(sectionElm)
+    sectionElm.appendTo($tweet)
 
+    //article => footer element
     var footerElm = $("<footer>").addClass("tweet-footer")
                                 .text(`Created at: ${created_date}`)
-                                .appendTo($tweet)
     var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
     var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
     var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
     var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
 
+    footerElm.appendTo($tweet)
+
     return $tweet;
   }
-
 
   renderTweets(data);
 });
