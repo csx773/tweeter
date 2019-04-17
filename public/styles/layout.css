@@ -45,6 +45,7 @@ main {
   border: 2px solid black;
   overflow: hidden;
   opacity: 0.5;
+  margin-bottom: 20px;
 }
 
 .tweet:hover {
