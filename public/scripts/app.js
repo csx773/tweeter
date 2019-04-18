@@ -19,12 +19,14 @@ $(document).ready(function() {
     let validData = true;
 
     if ( characterCount < 0){
-      alert("Exceeded character counter. Please shorten tweet.");
+      $('#error-msg').slideDown().html('<i class="fa fa-times-circle"></i> Error: Exceeded character count.')
       validData = false;
     } else if ( textArea.length === 0){
-      alert("Please enter some text.");
+      $('#error-msg').slideDown().html('<i class="fa fa-times-circle"></i> Error: Please enter some text.')
       validData = false;
     } else if (validData === true){
+      //hide any previous error message
+      $("#error-msg").slideUp()
       //all error handling tests passed, can go and send AJAX request
       $.ajax({
           url: '/tweets',
@@ -63,8 +65,6 @@ $(document).ready(function() {
       });
     }
   }
-  //init load tweets
-  loadTweets();
 
 
   //renders passed in $ajax array of user tweet data
@@ -129,6 +129,11 @@ $(document).ready(function() {
     });
   });
 
+  /////////////////////////////////
+  //init load tweets
+  loadTweets();
+  //hide error msg div element
+  $("#error-msg").hide();
 
 });
 
