@@ -5,7 +5,6 @@
  */
 
 $(document).ready(function() {
-
   //some event handler here
 
   //AJAX function to handle submit POST request and update new tweet
