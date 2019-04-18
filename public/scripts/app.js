@@ -12,21 +12,35 @@ $(document).ready(function() {
   $('form').on('submit', function(){
     console.log("SUBMIT BUTTON CLICKED, performing AJAX request");
     event.preventDefault();
-    // firmData is serialized in a string: key=value format
-    let formData = $(this).serialize()
+    // formData is serialized in a string: key=value format
+    let formData = $(this).serialize();
+    let characterCount = $("span[class='counter']").text();
+    let validData = true;
 
-    $.ajax({
-        url: '/tweets',
-        method: "POST",
-        data: formData,
-        success: function() {
-          console.log("Success AJAX POST request!");
-          loadTweets();
-        },
-        failure: function(error) {
-          console.log("Failed Ajax request, error code is: ", + error);
-        }
-    });
+    console.log(`Submitted formData is: ${formData}`)
+    console.log(`counter is: ${characterCount}`)
+
+    if (formData === null || formData === ''){
+      alert("Tweet cannot be empty, please enter a new tweet.");
+      validData = false;
+    } else if ( characterCount < 0){
+      alert("Exceeded character counter. Please shorten tweet.");
+      validData = false;
+    } else if (validData === true){
+      $.ajax({
+          url: '/tweets',
+          method: "POST",
+          data: formData,
+          success: function() {
+            console.log("Success AJAX POST request!");
+            loadTweets();
+          },
+          failure: function(error) {
+            console.log("Failed Ajax request, error code is: ", + error);
+          }
+      });
+
+    }
   });
 
   function loadTweets(){
