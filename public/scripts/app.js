@@ -37,7 +37,7 @@ $(document).ready(function() {
             console.log("Success AJAX POST request!");
             //clear the input textarea and reset counter
             $('#current-tweet').val('');
-            $("span.counter").replaceWith('<span class="counter">140</span>');
+            $('span.counter').text('140');
             loadTweets();
           },
           failure: function(error) {
@@ -52,7 +52,7 @@ $(document).ready(function() {
     console.log("inside loadTweets() function")
     $.ajax('/tweets', {method: 'GET'}).then( function(data){
       console.log("GET Recieved response from server")
-      //gets back an array of data for all users
+      //gets back an array of data for all users and tweets
       //pass in all tweet data to render, data is an array
       renderTweets(data);
     });
@@ -73,7 +73,7 @@ $(document).ready(function() {
 
     tweets.forEach( function (userData){
       let finishedTweet = createTweetElement(userData);
-      finishedTweet.appendTo('.tweets-container');
+      finishedTweet.prependTo('.tweets-container');
     });
   }
 
