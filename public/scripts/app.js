@@ -27,12 +27,17 @@ $(document).ready(function() {
       alert("Please enter some text.");
       validData = false;
     } else if (validData === true){
+      //all error handling tests passed, can go and send AJAX request
       $.ajax({
           url: '/tweets',
           method: "POST",
           data: formData,
-          success: function() {
+          success: function(data) {
+            //wait for response from server
             console.log("Success AJAX POST request!");
+            //clear the input textarea and reset counter
+            $('#current-tweet').val('');
+            $("span.counter").replaceWith('<span class="counter">140</span>');
             loadTweets();
           },
           failure: function(error) {
@@ -53,7 +58,9 @@ $(document).ready(function() {
     });
   }
 
+  //const content = tweetData.content.text;
   //init tweets already in /tweets
+      //pass in all tweet data to render, data is an array
   loadTweets();
 
 
