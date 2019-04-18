@@ -17,8 +17,6 @@ $(document).ready(function() {
     let textArea = $("#current-tweet").val();
     let characterCount = $("span[class='counter']").text();
     let validData = true;
-    // console.log(`Submitted textArea is: ${textArea}`)
-    // console.log(`counter is: ${characterCount}`)
 
     if ( characterCount < 0){
       alert("Exceeded character counter. Please shorten tweet.");
@@ -33,18 +31,12 @@ $(document).ready(function() {
           method: "POST",
           data: formData,
           success: function(data) {
-            //wait for response from server
+            //if status code is good
             console.log("Success AJAX POST request!");
             //clear the input textarea and reset counter
             $('#current-tweet').val('');
             $('span.counter').text('140');
-            //only pass in the LAST elm of array = newest tweet
-            // let newTweet = data.slice(data.length-1);
-            // console.log("Below is data:")
-            // console.log(data);
-            // console.log("Below is newTweet only:")
-            // console.log(newTweet);
-
+            //only want to load in one NEW tweet
             loadTweets(true);
           },
           failure: function(error) {
@@ -56,22 +48,17 @@ $(document).ready(function() {
   });
 
   function loadTweets(isSingleTweet){
-    console.log("inside loadTweets() function")
     if (isSingleTweet){
-      //passed in from AJAX POST request for single tweet
+      //passed in from AJAX POST request for single new tweet
       console.log("loading SINGLE NEW TWEET")
       $.ajax('/tweets', {method: 'GET'}).then( function(data){
         let newTweet = data.slice(data.length-1);
-        console.log(`newTweet is: ${newTweet}`);
         renderTweets(newTweet);
       });
     } else {
       //load all tweets from database
       $.ajax('/tweets', {method: 'GET'}).then( function(data){
-        console.log("GET Recieved response from server")
         //gets back an array of data for all users and tweets
-        //pass in all tweet data to render, data is an array
-        console.log("inside loadTweets, data is: ", data);
         renderTweets(data);
       });
     }
@@ -87,7 +74,6 @@ $(document).ready(function() {
       // takes return value and appends it to the tweets container
     console.log("Inside renderTweets function");
     console.log(tweets);
-    let lastUserName = tweets[tweets.length-1].user.name;
     tweets.forEach(function (userData){
       let finishedTweet = createTweetElement(userData);
       finishedTweet.prependTo('.tweets-container');
@@ -96,7 +82,6 @@ $(document).ready(function() {
 
   //creates the HTML format for a tweet
   function createTweetElement(tweetData){
-    console.log("Inside createTweetElement function!!")
 
     const name = tweetData.user.name;
     const avatar = tweetData.user.avatars.small;
