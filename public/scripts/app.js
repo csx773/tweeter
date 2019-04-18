@@ -14,17 +14,17 @@ $(document).ready(function() {
     event.preventDefault();
     // formData is serialized in a string: key=value format
     let formData = $(this).serialize();
+    let textArea = $("#current-tweet").val();
     let characterCount = $("span[class='counter']").text();
     let validData = true;
+    // console.log(`Submitted textArea is: ${textArea}`)
+    // console.log(`counter is: ${characterCount}`)
 
-    console.log(`Submitted formData is: ${formData}`)
-    console.log(`counter is: ${characterCount}`)
-
-    if (formData === null || formData === ''){
-      alert("Tweet cannot be empty, please enter a new tweet.");
-      validData = false;
-    } else if ( characterCount < 0){
+    if ( characterCount < 0){
       alert("Exceeded character counter. Please shorten tweet.");
+      validData = false;
+    } else if ( textArea.length === 0){
+      alert("Please enter some text.");
       validData = false;
     } else if (validData === true){
       $.ajax({
@@ -39,8 +39,8 @@ $(document).ready(function() {
             console.log("Failed Ajax request, error code is: ", + error);
           }
       });
-
     }
+
   });
 
   function loadTweets(){
@@ -111,7 +111,6 @@ $(document).ready(function() {
     return $tweet;
   }
 
-  //renderTweets(data);
 });
 
 
