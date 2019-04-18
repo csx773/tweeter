@@ -120,19 +120,15 @@ $(document).ready(function() {
     return $tweet;
   }
 
-  //compose toggle slide function
-
+  //compose button toggle slide function
   $("#compose-btn").click( function() {
     console.log('Compuse toggle button is clicked!!!')
-    $(".new-tweet").slideToggle(350);
-
+    $(".new-tweet").slideToggle(350, function(){
+      //need to focus in on textarea
+      $('#current-tweet').focus();
+    });
   });
 
-  // $( "#clickme" ).click(function() {
-  //   $( "#book" ).slideToggle( "slow", function() {
-  //     // Animation complete.
-  //   });
-  // });
 
 });
 
