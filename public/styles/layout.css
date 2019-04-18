@@ -30,7 +30,7 @@ main {
   max-width: 450px;
   margin: auto;
   background-color: white;
-  padding-top: 140px;
+  padding-top: 100px;
   padding-bottom: 40px;
 }
 
@@ -108,31 +108,15 @@ article.tweet:hover .icons {
 }
 
 
-/*
-article.tweet {
-  margin-left: 2em;
-  margin-right: 2em;
-  border-radius: 15px;
-  border: 2px solid green;
-  overflow: hidden;
+.isa_error {
+  margin: 10px 0px;
+  padding: 10px;
+  color: #D8000C;
+  background-color: #FFD2D2;
 }
 
-article.tweet header {
-  background-color: #eee;
-  border-bottom: 2px solid green;
+.isa_error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
 }
-
-article.tweet header img {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-}
-
-article.tweet footer {
-  border-top: 2px solid green;
-}
-
-article.tweet section {
-
-}
-*/

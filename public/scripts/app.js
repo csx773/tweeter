@@ -122,8 +122,8 @@ $(document).ready(function() {
 
   //compose button toggle slide function
   $("#compose-btn").click( function() {
-    console.log('Compuse toggle button is clicked!!!')
-    $(".new-tweet").slideToggle(350, function(){
+    console.log('Compose toggle button is clicked!!!')
+    $("#new-tweet").slideToggle(350, function(){
       //need to focus in on textarea
       $('#current-tweet').focus();
     });
