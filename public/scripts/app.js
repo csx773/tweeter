@@ -38,7 +38,14 @@ $(document).ready(function() {
             //clear the input textarea and reset counter
             $('#current-tweet').val('');
             $('span.counter').text('140');
-            loadTweets();
+            //only pass in the LAST elm of array = newest tweet
+            // let newTweet = data.slice(data.length-1);
+            // console.log("Below is data:")
+            // console.log(data);
+            // console.log("Below is newTweet only:")
+            // console.log(newTweet);
+
+            loadTweets(true);
           },
           failure: function(error) {
             console.log("Failed Ajax request, error code is: ", + error);
@@ -48,19 +55,28 @@ $(document).ready(function() {
 
   });
 
-  function loadTweets(){
+  function loadTweets(isSingleTweet){
     console.log("inside loadTweets() function")
-    $.ajax('/tweets', {method: 'GET'}).then( function(data){
-      console.log("GET Recieved response from server")
-      //gets back an array of data for all users and tweets
-      //pass in all tweet data to render, data is an array
-      renderTweets(data);
-    });
+    if (isSingleTweet){
+      //passed in from AJAX POST request for single tweet
+      console.log("loading SINGLE NEW TWEET")
+      $.ajax('/tweets', {method: 'GET'}).then( function(data){
+        let newTweet = data.slice(data.length-1);
+        console.log(`newTweet is: ${newTweet}`);
+        renderTweets(newTweet);
+      });
+    } else {
+      //load all tweets from database
+      $.ajax('/tweets', {method: 'GET'}).then( function(data){
+        console.log("GET Recieved response from server")
+        //gets back an array of data for all users and tweets
+        //pass in all tweet data to render, data is an array
+        console.log("inside loadTweets, data is: ", data);
+        renderTweets(data);
+      });
+    }
   }
-
-  //const content = tweetData.content.text;
-  //init tweets already in /tweets
-      //pass in all tweet data to render, data is an array
+  //init load tweets
   loadTweets();
 
 
@@ -70,8 +86,9 @@ $(document).ready(function() {
       // calls createTweetElement for each tweet
       // takes return value and appends it to the tweets container
     console.log("Inside renderTweets function");
-
-    tweets.forEach( function (userData){
+    console.log(tweets);
+    let lastUserName = tweets[tweets.length-1].user.name;
+    tweets.forEach(function (userData){
       let finishedTweet = createTweetElement(userData);
       finishedTweet.prependTo('.tweets-container');
     });
