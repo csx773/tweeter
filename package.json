@@ -16,9 +16,15 @@
     "express": "^4.13.4",
     "md5": "^2.1.0",
     "mongodb": "^2.2.36",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "eslint": "^5.16.0"
   },
   "devDependencies": {
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.9.2"
   }
 }
