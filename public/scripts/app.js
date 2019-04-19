@@ -168,15 +168,17 @@ $(document).ready(function() {
     var footerElm = $("<footer>").addClass("tweet-footer");
     //Need to check which date diff to update ( in days OR in hours:minutes)
     if( created_date.length === 2){
-      //need to post Hours:Minutes format
+      //need to post Hours:Minutes ago format
       footerElm.text(`Posted ${created_date[0]} hours ${created_date[1]} minutes ago`)
     }else {
+      //post in Days ago format
       footerElm.text(`Posted ${created_date} days ago`)
-      var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
-      var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
-      var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
-      var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
     }
+    var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
+    var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
+    var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
+    var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
+
 
     footerElm.appendTo($tweet)
 
