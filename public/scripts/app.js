@@ -118,23 +118,30 @@ $(document).ready(function() {
     }
 
     //TESTING date functions
-    let daysCreated = date_diff_indays(date_created, today);
-    console.log("Days created ago is: ", daysCreated);
+    let finalDate = [];
 
-    if (daysCreated === 0){
+    let daysDiff = date_diff_indays(date_created, today);
+    console.log("Days created ago is: ", daysDiff);
+
+    if (daysDiff === 0){
       console.log("Time differnce is less than 1 day, now finding HH:MM");
       let timeDiff = diff_hours_and_mins(date_created, today);
       let hour = timeDiff[0];
       let minute = timeDiff[1];
       console.log(`TEST Posted ${hour} hours ${minute} minutes ago!`);
+      finalDate.push(hour);
+      finalDate.push(minute);
+    } else {
+      finalDate.push(daysDiff);
     }
+    console.log(`final Date is: ${finalDate}`);
 
 
     let name = tweetData.user.name;
     let avatar = tweetData.user.avatars.small;
     let handle = tweetData.user.handle;
     let content = tweetData.content.text;
-    let created_date = daysCreated;
+    let created_date = finalDate;
 
 
 
@@ -158,11 +165,18 @@ $(document).ready(function() {
     sectionElm.appendTo($tweet)
 
     //article => footer element
-    var footerElm = $("<footer>").addClass("tweet-footer").text(`Posted ${created_date} days ago`)
-    var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
-    var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
-    var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
-    var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
+    var footerElm = $("<footer>").addClass("tweet-footer");
+    //Need to check which date diff to update ( in days OR in hours:minutes)
+    if( created_date.length === 2){
+      //need to post Hours:Minutes format
+      footerElm.text(`Posted ${created_date[0]} hours ${created_date[1]} minutes ago`)
+    }else {
+      footerElm.text(`Posted ${created_date} days ago`)
+      var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
+      var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
+      var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
+      var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
+    }
 
     footerElm.appendTo($tweet)
 
