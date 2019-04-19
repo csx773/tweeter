@@ -65,7 +65,6 @@ $(document).ready(function() {
     }
   }
 
-
   //renders passed in $ajax array of user tweet data
   function renderTweets(tweets) {
     // loops through tweets
@@ -81,12 +80,15 @@ $(document).ready(function() {
 
   //creates the HTML format for a tweet
   function createTweetElement(tweetData){
+    console.log("INSIDE createTweetElement")
 
-    const name = tweetData.user.name;
-    const avatar = tweetData.user.avatars.small;
-    const handle = tweetData.user.handle;
-    const content = tweetData.content.text;
-    const created_date = tweetData.created_at;
+    let name = tweetData.user.name;
+    let avatar = tweetData.user.avatars.small;
+    let handle = tweetData.user.handle;
+    let content = tweetData.content.text;
+    let created_date = tweetData.created_at;
+
+
     //main article element
     var $tweet = $("<article>").addClass("tweet")
     //article => header element
