@@ -81,12 +81,61 @@ $(document).ready(function() {
   //creates the HTML format for a tweet
   function createTweetElement(tweetData){
     console.log("INSIDE createTweetElement")
+    // need to create new Date() and find how long ago tweet was created
+    let date_created = new Date(tweetData.created_at);
+    let today = new Date();
+
+    //used to find how many days ago from today
+    var date_diff_indays = function(date1, date2) {
+      dt1 = new Date(date1);
+      dt2 = new Date(date2);
+      return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    }
+
+    //only called if time difference is 0 days ==> dt2 is date_created, dt1 is today
+    function diff_hours_and_mins(dt2, dt1)
+    {
+      let hourAndMin = [];
+      let createdDT = new Date(dt2);
+      let todayDT = new Date(dt1);
+
+      //getTime() returns in muliseconds
+      var diffHours =(createdDT.getTime() - todayDT.getTime()) / 1000;
+      diffHours /= (60 * 60);
+      //console.log("hour diff is: ", diffHours);
+      hourAndMin.push( Math.abs(Math.round(diffHours)) );
+
+      var diffMins =(createdDT.getTime() - todayDT.getTime()) / 1000;
+      diffMins /= (60);
+      //find only difference from start of the hour, result is between 0-60 mins
+      diffMins = diffMins % 60;
+      //console.log("minute diff is: ", diffMins);
+
+      hourAndMin.push( Math.abs(Math.round(diffMins)) );
+      //console.log(hourAndMin);
+      return hourAndMin;
+
+    }
+
+    //TESTING date functions
+    let daysCreated = date_diff_indays(date_created, today);
+    console.log("Days created ago is: ", daysCreated);
+
+    if (daysCreated === 0){
+      console.log("Time differnce is less than 1 day, now finding HH:MM");
+      let timeDiff = diff_hours_and_mins(date_created, today);
+      let hour = timeDiff[0];
+      let minute = timeDiff[1];
+      console.log(`TEST Posted ${hour} hours ${minute} minutes ago!`);
+    }
+
 
     let name = tweetData.user.name;
     let avatar = tweetData.user.avatars.small;
     let handle = tweetData.user.handle;
     let content = tweetData.content.text;
-    let created_date = tweetData.created_at;
+    let created_date = daysCreated;
+
 
 
     //main article element
@@ -109,8 +158,7 @@ $(document).ready(function() {
     sectionElm.appendTo($tweet)
 
     //article => footer element
-    var footerElm = $("<footer>").addClass("tweet-footer")
-                                .text(`Created at: ${created_date}`)
+    var footerElm = $("<footer>").addClass("tweet-footer").text(`Posted ${created_date} days ago`)
     var footerLogosElm = $("<div>").addClass("icons").appendTo(footerElm)
     var logo1 = $("<i>").addClass("fas fa-flag").appendTo(footerLogosElm)
     var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)

@@ -26,7 +26,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
   // We have a connection to the "tweeter" db, starting here.
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
-  //pass in monogo db into datahelpers
 
   // The `data-helpers` module provides an interface to the database of tweets.
   // This simple interface layer has a big benefit: we could switch out the
@@ -35,7 +34,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
   // Because it exports a function that expects the `db` as a parameter, we can
   // require it and pass the `db` parameter immediately:
-  //NEED to pass in new mongo database `db` to DataHelpers
   const DataHelpers = require("./lib/data-helpers.js")(db);
 
   // The `tweets-routes` module works similarly: we pass it the `DataHelpers` object
