@@ -179,7 +179,6 @@ $(document).ready(function() {
     var logo2 = $("<i>").addClass("fas fa-share-square").appendTo(footerLogosElm)
     var logo3 = $("<i>").addClass("fas fa-heart").appendTo(footerLogosElm)
 
-
     footerElm.appendTo($tweet)
 
     return $tweet;
