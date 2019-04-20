@@ -4,6 +4,15 @@ Tweeter is a simple, single-page Twitter clone.
 
 This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
 
+## Screenshots
+
+
+!["Front page"](https://github.com/csx773/tweeter/blob/master/screenshots/mouse-over.png)
+!["New Tweet"](https://github.com/csx773/tweeter/blob/master/screenshots/new-tweet.png)
+!["Compose Button"](https://github.com/csx773/tweeter/blob/master/screenshots/compose-hide.png)
+!["Error message: empty entry"](https://github.com/csx773/tweeter/blob/master/screenshots/error1.png)
+!["Error message: too many characters"](https://github.com/csx773/tweeter/blob/master/screenshots/error2.png)
+
 ## Getting Started
 
 1. Fork this repository, then clone your fork of this repository.
@@ -20,11 +29,4 @@ This repository is the starter code for the project: Students will fork and clon
   * Mongodb
   * Morgan
 
-## Screenshots
-
-front page
-new tweet
-compose button
-error message 1
-error message 2
 
